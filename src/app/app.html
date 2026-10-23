@@ -1,0 +1,19 @@
+<div class="grid grid-cols-3 p-4">
+  <app-filter-movies
+    placeholder="Regisseure"
+    [filterValuesSet]="directors()"
+    (filterChanged)="filteredDirector.set($event)"
+  ></app-filter-movies>
+  <app-filter-movies
+    placeholder="Planeten"
+    [filterValues]="planets()"
+    (filterChanged)="filteredPlanet.set($event)"
+  ></app-filter-movies>
+  <app-filter-movies
+    placeholder="Raumschiffe"
+    [filterValues]="starships()"
+    (filterChanged)="filteredStarship.set($event)"
+  ></app-filter-movies>
+</div>
+
+<app-movie-table [movies]="filteredMovies()" [movieError]="movieError()"></app-movie-table>

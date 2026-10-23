@@ -1,0 +1,15 @@
+<label for="valueOptions" class="block mb-2.5 text-sm font-medium"
+  >Filter für {{ placeholder() }}</label
+>
+<select #filter id="valueOptions" class="select" (change)="onFilterChanged(filter.value)">
+  <option value="">Alle {{ placeholder() }}</option>
+  @if (filterValuesSet() !== undefined) {
+    @for (filterValue of filterValuesSet() ?? []; track filterValue) {
+      <option [value]="filterValue">{{ filterValue }}</option>
+    }
+  } @else {
+    @for (filterValue of filterValues() ?? []; track filterValue.url) {
+      <option [attr.value]="filterValue.url">{{ filterValue.name }}</option>
+    }
+  }
+</select>

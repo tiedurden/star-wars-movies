@@ -1,0 +1,42 @@
+<div class="overflow-x-auto">
+  <table class="table">
+    <!-- head -->
+    <thead>
+      <tr>
+        <th></th>
+        <th>Title</th>
+        <th>Director</th>
+        <th>Release Date</th>
+        <th>Created</th>
+        <th>Planets</th>
+        <th>Starships</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (movieError()) {
+        <p>Movies Could not be loaded</p>
+      } @else if (movies() == undefined) {
+        <p>Movies are getting loaded</p>
+      } @else {
+        @for (movie of movies(); track movie.title) {
+          <tr>
+            <th>{{ $index }}</th>
+            <td>{{ movie.title }}</td>
+            <td>{{ movie.director }}</td>
+            <td>{{ movie.release_date }}</td>
+            <td>{{ formatDate(movie.created) }}</td>
+            <td>
+              <app-table-list-item [items]="movie.planets" itemType="Planet"></app-table-list-item>
+            </td>
+            <td>
+              <app-table-list-item
+                [items]="movie.starships"
+                itemType="Starship"
+              ></app-table-list-item>
+            </td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>
